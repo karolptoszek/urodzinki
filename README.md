@@ -30,3 +30,4 @@ npx vite build --outDir docs
 ```
 (Alternatywnie w projekcie znajduje się także automatyczny workflow `.github/workflows/deploy.yml` dla trybu **GitHub Actions**.)
 # urodzinki
+# urodzinki
