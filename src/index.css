@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-canvas: #FAF8F5;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F2EEE9;
+  --color-ink: #231C19;
+  --color-ink-muted: #6E625B;
+  --color-accent: #8E293D;
+  --color-accent-hover: #742031;
+  --color-gold: #B88A44;
+  --color-sage: #3D6B58;
+  --color-border-hairline: #E6DFD6;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #FAF8F5;
+    color: #231C19;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: contain;
+  }
+
+  body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  button,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+/* Subtle artisanal paper texture overlay */
+.paper-grain {
+  background-image: radial-gradient(rgba(35, 28, 25, 0.03) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Safe area helpers for iPhone notch & home indicator */
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Tactile ripple & floating animations (compositor-only) */
+@keyframes ripple-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.8);
+    opacity: 0;
+  }
+}
+
+@keyframes float-up-fade {
+  0% {
+    transform: translateY(0) scale(0.7) rotate(-6deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-120px) scale(1.15) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gentle-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes seal-shine {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.animate-ripple {
+  animation: ripple-expand 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float-heart {
+  animation: float-up-fade 2.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-gentle-breathe {
+  animation: gentle-breathe 3.4s ease-in-out infinite;
+}
+
+.animate-seal-shine {
+  animation: seal-shine 2.8s ease-in-out infinite;
+}
+
+/* 3D Envelope flap perspective */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gentle-breathe,
+  .animate-seal-shine {
+    animation: none;
+  }
+}
